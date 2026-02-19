@@ -111,5 +111,4 @@ def data_transformations():
     return df
 
 
-data_transformations()
 
