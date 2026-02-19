@@ -20,7 +20,7 @@ load_dotenv(env_path)
 user = os.getenv('user')
 password = os.getenv('password')
 database = os.getenv('database')
-host = 'localhost' #o docker acessa o nosso bd localmente
+host = 'host.docker.internal' #o docker acessa o nosso bd localmente
 
 
 def get_engine():

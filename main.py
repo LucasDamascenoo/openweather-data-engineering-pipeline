@@ -1,48 +1,48 @@
-from src.extract import extract_weather_data 
-from src.load_data import load_data
-from src.transform_data import data_transformations
+# from src.extract import extract_weather_data 
+# from src.load_data import load_data
+# from src.transform_data import data_transformations
 
-import os
-from pathlib import Path
-from dotenv import load_dotenv
-import logging
-
-
-#Configuracao do Logging
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s | %(levelname)s | %(name)s | %(message)s"
-)
+# import os
+# from pathlib import Path
+# from dotenv import load_dotenv
+# import logging
 
 
-env_path = Path(__file__).resolve().parent.parent / 'config'/ '.env'
-load_dotenv(env_path)
+# #Configuracao do Logging
+# logging.basicConfig(
+#     level=logging.INFO,
+#     format="%(asctime)s | %(levelname)s | %(name)s | %(message)s"
+# )
 
 
-API_KEY = os.getenv('APY_KEY')
-
-url = f'https://api.openweathermap.org/data/2.5/weather?q=Sao Paulo,BR&units=metric&appid={API_KEY}'
-table_name = 'sp_weather'
+# env_path = Path(__file__).resolve().parent.parent / 'config'/ '.env'
+# load_dotenv(env_path)
 
 
-def pipeline():
-    try:
-        logging.info("ETAPA 1: EXTRACT")
-        extract_weather_data(url)
+# API_KEY = os.getenv('APY_KEY')
+
+# url = f'https://api.openweathermap.org/data/2.5/weather?q=Sao Paulo,BR&units=metric&appid={API_KEY}'
+# table_name = 'sp_weather'
+
+
+# def pipeline():
+#     try:
+#         logging.info("ETAPA 1: EXTRACT")
+#         extract_weather_data(url)
         
-        logging.info("ETAPA 2: TRANSFORM")
-        df = data_transformations()
+#         logging.info("ETAPA 2: TRANSFORM")
+#         df = data_transformations()
         
-        logging.info("ETAPA 3: LOAD")
-        load_data(table_name, df)
+#         logging.info("ETAPA 3: LOAD")
+#         load_data(table_name, df)
         
-        print("\n" + "="*60)
-        print("✅ Pipeline concluído com sucesso!")
-        print("="*60)
+#         print("\n" + "="*60)
+#         print("✅ Pipeline concluído com sucesso!")
+#         print("="*60)
         
-    except Exception as e:
-        logging.error(f"❌ ERRO no Pipeline: {e}")
-        import traceback
-        traceback.print_exc()
+#     except Exception as e:
+#         logging.error(f"❌ ERRO no Pipeline: {e}")
+#         import traceback
+#         traceback.print_exc()
     
-pipeline()
+# pipeline()
